@@ -70,7 +70,7 @@ $topic = $conn->query($sql);
 
 <!-- Question show on screen -->
     <div class="contaniner">
-    <form >
+    <!-- <form > -->
         <div class="card text-left">
             <div class="card-header">
                <h6>
@@ -118,20 +118,21 @@ $topic = $conn->query($sql);
                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
                     <label class="form-check-label" for="flexRadioDefault4" >4.
                     <?php 
-                
+                // ghfg
                 while( $row = mysqli_fetch_assoc($d) ){
                     echo $row['d'];
                 } ?>
-
+                 </label>
                 </br>
-                <input type="text" id="ans" name="ans" value="<?php 
+                <label  id="ans<?php echo $i; ?>" name="ans" style="display:none;" >
+                <?php 
                     while( $row = mysqli_fetch_assoc($ans) ){
-                    echo $row['ans'];
-                } ?>" hidden > 
-                    </label>
+                    echo "Answer is: ".$row['ans'];
+                } ?>
+                 </label>
+                   
                     </div>
             
-                    <lable id="answ" name="answ" value=" "  > 
                  </lable>
                  </br>
                  <hr>
@@ -141,9 +142,10 @@ $topic = $conn->query($sql);
                 
                 <button type="reset" id="reset" name="reset" class="btn btn-primary"> Reset </button>
                 
-                <button id="showans" name="showans" class="btn btn-dark"> Show Answer </button>
+                <button id="showans" name="showans" class="btn btn-dark" onclick="showAns(<?php echo $i; ?>);"> Show Answer </button>
                 </br>
                 </br>
+                <h1>Abhishek Singh Dhull</h1>
                 <lable id="topic" name="topic" value=" "  > Topic: 
                 <?php 
                     while( $row = mysqli_fetch_assoc($topic) ){
@@ -151,7 +153,7 @@ $topic = $conn->query($sql);
                 } ?>
                  </lable>
             </div>
-            </form>
+            <!-- </form> -->
             <?php } ?>
             <div class="card-footer text-muted">
                 Created By : AjAy SHEOKAND
@@ -165,17 +167,21 @@ $topic = $conn->query($sql);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
     <script type="text/javascript">
-
-    $(document).ready(function(){
-        var ans = $('#ans').val();
-        $('#showans').click(function(){
+    function showAns(i){
+        $('#ans'+i).css('color','red');
+        $('#ans'+i).css('display','block');
+        $('#ans'+i).show();
+    }
+    // $(document).ready(function(){
+    //     var ans = $('#ans').val();
+    //     $('#showans').click(function(){
             
-            //var ans=2;
-            $('#answ').html("Answer is : " +ans);
-            $('#answ').css('color','red');
-            return false;
-        })
-    })
+    //         //var ans=2;
+    //         $('#answ').html("Answer is : " );
+    //         $('#answ').css('color','red');
+    //         return false;
+    //     })
+    // })
 
     </script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
